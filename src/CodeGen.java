@@ -1,36 +1,25 @@
 class CodeGen{
 
-	
-	String geraCodigo (ArvoreSintatica arv)
-	{
-		return (geraCodigo2(arv) + "PRINT");
-	}
-	String geraCodigo2 (ArvoreSintatica arv)
+	Float geraCodigo (ArvoreSintatica arv)
 	{
 
 	if (arv instanceof Mult)
-		return (geraCodigo2(((Mult) arv).arg1) + 
-			geraCodigo2(((Mult) arv).arg2) +
-			"MULT\n");
+		return (geraCodigo(((Mult) arv).arg1) * geraCodigo(((Mult) arv).arg2));
 
 	if (arv instanceof Soma)
-		return (geraCodigo2(((Soma) arv).arg1) + 
-			geraCodigo2(((Soma) arv).arg2) +
-			"SUM\n");
+		return (geraCodigo(((Soma) arv).arg1) + geraCodigo(((Soma) arv).arg2));
+
 
 	if (arv instanceof Sub)
-		return (geraCodigo2(((Sub) arv).arg1) + 
-			geraCodigo2(((Sub) arv).arg2) +
-			"SUB\n");
+		return (geraCodigo(((Sub) arv).arg1) - geraCodigo(((Sub) arv).arg2));
+
 
 	if (arv instanceof Div)
-		return (geraCodigo2(((Div) arv).arg1) + 
-			geraCodigo2(((Div) arv).arg2) +
-			"DIV\n");
+		return (geraCodigo(((Div) arv).arg1) / geraCodigo(((Div) arv).arg2));
 
 	if (arv instanceof Num)
-		return ("PUSH "  + ((Num) arv).num + "\n");
+		return (float)((Num) arv).num;
 
-	return "";
+	return (float) 0;
 	}
 }
